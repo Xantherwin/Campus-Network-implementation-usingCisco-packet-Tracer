@@ -1,0 +1,45 @@
+#Commands for Switch to assign ip adddress using vlans
+int range fa0/1-24
+switchport mode access
+switchport access vlan 80
+do wr
+
+exit
+
+#commands for router to acess all the vlans
+int gig1/0/8
+switchport mode access
+switchport access vlan 80
+
+en
+conf t
+
+int gig0/0.30
+encapsulation dot1Q 30
+ip address 192.168.3.1 255.255.255.0
+ex
+
+#DHCP Configuration commands
+service dhcp
+ip dhcp pool ACC-pool
+network 192.168.3.0 255.255.255.0
+default-router 192.168.3.1
+dns-server 192.168.3.1
+ex
+do wr
+
+#rip routing command
+router rip
+version 2
+network 192.168.9.0
+network 192.168.10.0
+
+#Trunk Commands
+int gig 0/1/0
+switchport trunk encapsulation dot1q
+switchport mode trunk
+
+if you encounter any invalid marker ^ while executing the trunk commands then simply go to config->select the gig port you want to trunk then acess-> Trunk
+
+DMIN,HR,ACCOUNTS,BUSINESS,
+In this project an Campus network in designed and implemented in Cisco packet Tracer .The Campus project is  for  Christ University which have of 3 main areas namely Main campus, Branch Campus and the Cloud for data storage and other communication. 
